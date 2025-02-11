@@ -6,12 +6,151 @@
 -->
 <html>
 	<head>
-		<title>Generic Page - Massively by HTML5 UP</title>
+		<title>Projects</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+	<script>
+		// Function to get the project name from the URL
+		function getProjectName() {
+			const params = new URLSearchParams(window.location.search);
+			return params.get("project"); // Get "project" parameter from URL
+		}
+
+		const projectDetails = {
+				"project1": {
+					title: "Bike Sales Analysis: Understanding Customer Purchase Behavior",
+					scenario: `A regional bike retailer wanted to improve its sales strategy by identifying key customer demographics most likely to purchase bikes. They collected customer data over the past year, including personal details, income levels, commuting habits, and purchasing behavior.`,
+					projectfile: [
+						'Download & view project file <a href="https://github.com/megannyabvudzi/my-portfolio/blob/main/Project%201%20-%20Bike%20Sales.xlsx" target="_blank">here</a>',
+						"<p>The dataset used for this project can be found <a href='https://github.com/AlexTheAnalyst/Excel-Tutorial/blob/main/Excel%20Project%20Dataset.xlsx' target='_blank'>here</a><p> "
+					],
+					questions: [
+						"Which customer profiles are most likely to purchase a bike?",
+						"How do factors like <strong>income, marital status, or commute distance</strong> impact bike sales?",
+						"What trends exist across different <strong>age groups and regions</strong>?",
+						"How can the retailer tailor its marketing and inventory based on these insights?"
+					],
+					dataAttributes: [
+						"<strong>Demographics:</strong> Age, Gender, Marital Status, Number of Children",
+						"<strong>Financial & Work Details:</strong> Income, Occupation, Education Level",
+						"<strong>Lifestyle Factors:</strong> Homeownership, Number of Cars, Commute Distance",
+						"<strong>Location:</strong> Region",
+						"<strong>Purchase Behavior:</strong> Whether a bike was purchased"
+					],
+					methods: [
+						"Tool: Microsoft Excel",
+						"Data cleaning & preparation — removed duplicates and formatted data for analysis. Used IFS function to simplify age data",
+						"Pivot tables & charts — Created pivot tables to summarise sales trends by demographics and generated visual insights",
+						"Dashboards — designed an interactive dashboard (includes slicers) to visualise findings dynamically"
+					],
+					findings: [
+						"📊 High Earning Middle-aged men with a short commute distance are more likely to purchase a bike.",
+						"📊 Married customers with children were less likely to purchase, preferring cars for commuting.",
+						"📊 In Europe, young adults with a shorter commute distance are more likely to purchase bikes. In North America, less people purchase bikes overall, but, of those who do, middle-aged men are the main demographic. In the Pacific, more people purchase bikes than don't, with customers being in the middle-age or young adult demographic.",
+						"📊 The retailer could improve sales by <strong>targeting ads</strong> toward commuters in high-income regions."
+					],
+					conclusion: ``,
+					image: "images/dashboard1.png"
+				}
+				// "project2": {
+				// 	title: "Supermarket Sales Analysis: Driving customer loyalty",
+				// 	scenario: `The company aims to increase customer loyalty by identifying the cities that generate the most sales and provide the best customer experience. Management plans to use these insights to design targeted loyalty programmes and improve overall customer satisfaction.`,
+				// 	projectfile: [
+				// 		'Download & view project file <a href="https://github.com/megannyabvudzi/my-portfolio/blob/main/Project%202%20-%20Supermarket%20Sales.xlsx" target="_blank">here</a>',
+				// 		"<p>The dataset used for this project can be found <a href='https://www.kaggle.com/datasets/aungpyaeap/supermarket-sales/data' target='_blank'>here</a><p> "
+				// 	],
+				// 	questions: [
+				// 		"Which customer profiles are most likely to purchase a bike?",
+				// 		"How do factors like <strong>income, marital status, or commute distance</strong> impact bike sales?",
+				// 		"What trends exist across different <strong>age groups and regions</strong>?",
+				// 		"How can the retailer tailor its marketing and inventory based on these insights?"
+				// 	],
+				// 	dataAttributes: [
+				// 		"<strong>Demographics:</strong> Age, Gender, Marital Status, Number of Children",
+				// 		"<strong>Financial & Work Details:</strong> Income, Occupation, Education Level",
+				// 		"<strong>Lifestyle Factors:</strong> Homeownership, Number of Cars, Commute Distance",
+				// 		"<strong>Location:</strong> Region",
+				// 		"<strong>Purchase Behavior:</strong> Whether a bike was purchased"
+				// 	],
+				// 	methods: [
+				// 		"Tool: Microsoft Excel",
+				// 		"Data cleaning & preparation — removed duplicates and formatted data for analysis. Used IFS function to simplify age data",
+				// 		"Pivot tables & charts — Created pivot tables to summarise sales trends by demographics and generated visual insights",
+				// 		"Dashboards — designed an interactive dashboard (includes slicers) to visualise findings dynamically"
+				// 	],
+				// 	findings: [
+				// 		"📊 High Earning Middle-aged men with a short commute distance are more likely to purchase a bike.",
+				// 		"📊 Married customers with children were less likely to purchase, preferring cars for commuting.",
+				// 		"📊 In Europe, young adults with a shorter commute distance are more likely to purchase bikes. In North America, less people purchase bikes overall, but, of those who do, middle-aged men are the main demographic. In the Pacific, more people purchase bikes than don't, with customers being in the middle-age or young adult demographic.",
+				// 		"📊 The retailer could improve sales by <strong>targeting ads</strong> toward commuters in high-income regions."
+				// 	],
+				// 	conclusion: ``,
+				// 	image: "images/dashboard1.png"
+				// }
+			};
+	
+		// Function to update the page based on the selected project
+		function loadProjectDetails() {
+			const projectName = getProjectName();
+			const project = projectDetails[projectName];
+
+			if (project) {
+				document.getElementById("project-title").innerText = project.title;
+				document.getElementById("project-scenario").innerHTML = project.scenario;
+				document.getElementById("project-file").innerHTML = project.projectfile;
+				
+				// Load questions dynamically
+				const questionsList = document.getElementById("project-questions");
+				questionsList.innerHTML = "";
+				project.questions.forEach(q => {
+					const li = document.createElement("li");
+					li.innerHTML = `✅ ${q}`;
+					questionsList.appendChild(li);
+				});
+
+				// Load data attributes dynamically
+				const attributesList = document.getElementById("project-attributes");
+				attributesList.innerHTML = "";
+				project.dataAttributes.forEach(attr => {
+					const li = document.createElement("li");
+					li.innerHTML = attr;
+					attributesList.appendChild(li);
+				});
+
+				// Load methods dynamically
+				const methodsList = document.getElementById("project-methods");
+                methodsList.innerHTML = "";
+                project.methods.forEach(method => {
+                    const li = document.createElement("li");
+                    li.innerHTML = method;
+                    methodsList.appendChild(li);
+                });
+
+				// Load key findings dynamically
+				const findingsList = document.getElementById("project-findings");
+				findingsList.innerHTML = "";
+				project.findings.forEach(finding => {
+					const li = document.createElement("li");
+					li.innerHTML = finding;
+					findingsList.appendChild(li);
+				});
+
+				document.getElementById("project-conclusion").innerHTML = project.conclusion;
+				document.getElementById("project-image").src = project.image;
+			} else {
+				document.getElementById("project-title").innerText = "Project Not Found";
+				document.getElementById("project-scenario").innerText = "Sorry, this project does not exist.";
+			}
+		}
+
+	
+		// Run the function when the page loads
+		window.onload = loadProjectDetails;
+	</script>
+	
 	<body class="is-preload">
 
 		<!-- Wrapper -->
@@ -19,48 +158,64 @@
 
 				<!-- Header -->
 					<header id="header">
-						<a href="index.html" class="logo">Massively</a>
+						<a href="index.html" class="logo">Projects</a>
 					</header>
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li><a href="index.html">This is Massively</a></li>
-							<li class="active"><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
+							<li><a href="index.html">Portfolio</a></li>
+							<li class="active"><a href="generic.html">More Details</a></li>
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
 						</ul>
-						<ul class="icons">
+						<!-- <ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
+						</ul> -->
 					</nav>
 
 				<!-- Main -->
 					<div id="main">
 
 						<!-- Post -->
-							<section class="post">
-								<header class="major">
-									<span class="date">April 25, 2017</span>
-									<h1>This is a<br />
-									Generic Page</h1>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
-								</header>
-								<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
-								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sapien risus, commodo eget turpis at, elementum convallis enim turpis, lorem ipsum dolor sit amet nullam.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus. Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum.</p>
-							</section>
+						<section class="post">
+							<header class="major">
+								<h2 id="project-title">Loading...</h2>
+							</header>
+						
+							<h3>Scenario</h3>
+							<p id="project-scenario">Loading...</p>
+
+							<p id="project-file"></p>
+
+							<h3>Data Attributes Analysed</h3>
+							<ul id="project-attributes"></ul> <!-- Dynamic list -->
+													
+							<h3>Analysis Goals</h3>
+							<ul id="project-questions"></ul> <!-- Dynamic list -->
+
+							<h3>Methods Used</h3>
+							<ul id="project-methods"></ul> <!-- Dynamic list -->
+						
+							<h3>Key Findings</h3>
+							<ul id="project-findings"></ul> <!-- Dynamic list -->
+						
+							<p id="project-conclusion"></p> <!-- Dynamic paragraph -->
+						
+							<div class="image main">
+								<img id="project-image" src="" alt="Project Image" />
+							</div>
+						</section>
+											
 
 					</div>
 
 				<!-- Footer -->
 					<footer id="footer">
 						<section>
-							<form method="post" action="#">
+							<!-- <form method="post" action="#">
 								<div class="fields">
 									<div class="field">
 										<label for="name">Name</label>
@@ -78,13 +233,12 @@
 								<ul class="actions">
 									<li><input type="submit" value="Send Message" /></li>
 								</ul>
-							</form>
+							</form> -->
 						</section>
-						<section class="split contact">
+						<!-- <section class="split contact">
 							<section class="alt">
 								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
+								<p>Sandton, Johannnesburg</p>
 							</section>
 							<section>
 								<h3>Phone</h3>
@@ -92,7 +246,7 @@
 							</section>
 							<section>
 								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
+								<p>megan.nyabvudzi@gmail.com</p>
 							</section>
 							<section>
 								<h3>Social</h3>
@@ -103,12 +257,12 @@
 									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
 								</ul>
 							</section>
-						</section>
+						</section> -->
 					</footer>
 
 				<!-- Copyright -->
 					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li></ul>
 					</div>
 
 			</div>
