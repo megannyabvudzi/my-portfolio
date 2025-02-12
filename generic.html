@@ -54,42 +54,52 @@
 					],
 					conclusion: ``,
 					image: "images/dashboard1.png"
+				},
+				"project2": {
+					title: "Supermarket Sales Analysis: Driving customer loyalty",
+					scenario: `The company aims to increase customer loyalty by identifying the cities that generate the most sales and provide the best customer experience. Management plans to use these insights to design targeted loyalty programmes and improve overall customer satisfaction.`,
+					projectfile: [
+						'Download & view project file <a href="https://github.com/megannyabvudzi/my-portfolio/blob/main/Project%202%20-%20Supermarket%20Sales.xlsx" target="_blank">here</a>',
+						"<p>The dataset used for this project can be found <a href='https://www.kaggle.com/datasets/aungpyaeap/supermarket-sales/data' target='_blank'>here</a><p> "
+					],
+					questions: [
+						"Which branch/city performs the best with sales?",
+						"How do sales compare with members vs normal customers?",
+						"What trends exist across different genders?",
+						"What are the purchase behaviours of customers?",
+						"What is the relationship between customer satisfaction and customer type?"
+					],
+					dataAttributes: [
+						"<strong>Location:</strong> City (Mandalay, Naypyitaw, Yangon)",
+						"<strong>Customer Information:</strong> Customer Type (Member/Normal), Gender",
+						"<strong>Product Categories:</strong> Electronic accessories, Fashion accessories, Food and beverages, Health and beauty, Home and lifestyle, Sports and travel",
+						"<strong>Customer Experience:</strong> Rating Categories (Poor, Bad, Okay, Good, Great)"
+					],
+					methods: [
+						"Tool: Microsoft Excel",
+						"Data cleaning & preparation:</br> - Standardised date and number format</br> - Categorised ratings for clearer analysis </br> - Checked for & handled any missing values",
+						"Pivot Tables: Generated visual insights",
+						"Dashboard: Interactive dashboard with slicers for further filtering to visualise findings"
+					],
+					findings: [
+						"📊 Naypyitaw makes the most sales with approximately R56,881 in total sales.",
+						"📊 Total sales by members (R164,222) and normal customers (R158,741) are almost evenly split</br> (~51% and ~49% respectively).",
+						"📊 The female customers generally show higher spending in Naypyitaw while the male customers show strongest spending in Mandalay & Yangon.</br> The female customers contribute the most to the overall sales (roughly R167,882 in total).",
+						"📊 There are consistent sales among all the product lines with both member and normal customers showing similar spending behaviour.<br> Members spent more on food and beverages whilst normal customers spent more on electronic accessories.",
+						"📊 The branches have a similar average rating (ranging from 6.8 - 7.1) despite Naypyitaw making significantly more (R40,000) in sales.",
+						"📊 Most ratings customer ratings are positive (majority being 'okay' or 'good')."
+					],
+					conclusion: [
+						"Investigate Naypyitaw's high-performance strategies and apply them to the branches in Mandalay and Yangon.",
+						"Have more campaigns that target male customers.",
+						"Promote membership benefits to leverage spending from member customers.",
+						"Create targeted programs to convert more normal customers to members.",
+						"Investigate Naypyitaw's ratings compared to its high sales.",
+						"Focus on turning 'Okay' ratings to 'Good' and 'Great'.",
+						"Find out why customers give a 'Bad' rating to prevent future customer dissatisfaction."
+					],
+					image: "images/dashboard2.png"
 				}
-				// "project2": {
-				// 	title: "Supermarket Sales Analysis: Driving customer loyalty",
-				// 	scenario: `The company aims to increase customer loyalty by identifying the cities that generate the most sales and provide the best customer experience. Management plans to use these insights to design targeted loyalty programmes and improve overall customer satisfaction.`,
-				// 	projectfile: [
-				// 		'Download & view project file <a href="https://github.com/megannyabvudzi/my-portfolio/blob/main/Project%202%20-%20Supermarket%20Sales.xlsx" target="_blank">here</a>',
-				// 		"<p>The dataset used for this project can be found <a href='https://www.kaggle.com/datasets/aungpyaeap/supermarket-sales/data' target='_blank'>here</a><p> "
-				// 	],
-				// 	questions: [
-				// 		"Which customer profiles are most likely to purchase a bike?",
-				// 		"How do factors like <strong>income, marital status, or commute distance</strong> impact bike sales?",
-				// 		"What trends exist across different <strong>age groups and regions</strong>?",
-				// 		"How can the retailer tailor its marketing and inventory based on these insights?"
-				// 	],
-				// 	dataAttributes: [
-				// 		"<strong>Demographics:</strong> Age, Gender, Marital Status, Number of Children",
-				// 		"<strong>Financial & Work Details:</strong> Income, Occupation, Education Level",
-				// 		"<strong>Lifestyle Factors:</strong> Homeownership, Number of Cars, Commute Distance",
-				// 		"<strong>Location:</strong> Region",
-				// 		"<strong>Purchase Behavior:</strong> Whether a bike was purchased"
-				// 	],
-				// 	methods: [
-				// 		"Tool: Microsoft Excel",
-				// 		"Data cleaning & preparation — removed duplicates and formatted data for analysis. Used IFS function to simplify age data",
-				// 		"Pivot tables & charts — Created pivot tables to summarise sales trends by demographics and generated visual insights",
-				// 		"Dashboards — designed an interactive dashboard (includes slicers) to visualise findings dynamically"
-				// 	],
-				// 	findings: [
-				// 		"📊 High Earning Middle-aged men with a short commute distance are more likely to purchase a bike.",
-				// 		"📊 Married customers with children were less likely to purchase, preferring cars for commuting.",
-				// 		"📊 In Europe, young adults with a shorter commute distance are more likely to purchase bikes. In North America, less people purchase bikes overall, but, of those who do, middle-aged men are the main demographic. In the Pacific, more people purchase bikes than don't, with customers being in the middle-age or young adult demographic.",
-				// 		"📊 The retailer could improve sales by <strong>targeting ads</strong> toward commuters in high-income regions."
-				// 	],
-				// 	conclusion: ``,
-				// 	image: "images/dashboard1.png"
-				// }
 			};
 	
 		// Function to update the page based on the selected project
@@ -138,7 +148,15 @@
 					findingsList.appendChild(li);
 				});
 
-				document.getElementById("project-conclusion").innerHTML = project.conclusion;
+				// Load conclusions dynamically
+				const conclusionList = document.getElementById("project-conclusion");
+				conclusionList.innerHTML = "";
+				project.conclusion.forEach(conclusion => {
+					const li = document.createElement("li");
+					li.innerHTML = conclusion;
+					conclusionList.appendChild(li);
+				});
+
 				document.getElementById("project-image").src = project.image;
 			} else {
 				document.getElementById("project-title").innerText = "Project Not Found";
@@ -165,7 +183,7 @@
 					<nav id="nav">
 						<ul class="links">
 							<li><a href="index.html">Portfolio</a></li>
-							<li class="active"><a href="generic.html">More Details</a></li>
+							<li class="active"><a>More Details</a></li>
 							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
 						</ul>
 						<!-- <ul class="icons">
@@ -201,7 +219,8 @@
 						
 							<h3>Key Findings</h3>
 							<ul id="project-findings"></ul> <!-- Dynamic list -->
-						
+							
+							<h3>Conclusion</h3>
 							<p id="project-conclusion"></p> <!-- Dynamic paragraph -->
 						
 							<div class="image main">
